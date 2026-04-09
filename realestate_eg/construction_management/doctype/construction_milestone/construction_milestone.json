@@ -1,7 +1,7 @@
 {
  "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
  "doctype":"DocType","engine":"InnoDB",
- "field_order":["naming_series","milestone_name","project","zone","building","column_break","status","expected_start_date","expected_end_date","actual_start_date","actual_end_date","completion_pct","contractor_section","contractor","cost_budget"],
+ "field_order":["naming_series","milestone_name","project","zone","building","column_break","status","expected_start_date","expected_end_date","actual_start_date","actual_end_date","completion_pct","completion_contribution","contractor_section","contractor","cost_budget"],
  "fields":[
   {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"MST-.YYYY.-.####.","reqd":1,"default":"MST-.YYYY.-.####."},
   {"fieldname":"milestone_name","fieldtype":"Data","label":"Milestone Name","reqd":1,"in_list_view":1},
@@ -14,7 +14,8 @@
   {"fieldname":"expected_end_date","fieldtype":"Date","label":"Expected End"},
   {"fieldname":"actual_start_date","fieldtype":"Date","label":"Actual Start"},
   {"fieldname":"actual_end_date","fieldtype":"Date","label":"Actual End"},
-  {"fieldname":"completion_pct","fieldtype":"Percent","label":"Completion %","in_list_view":1},
+  {"fieldname":"completion_pct","fieldtype":"Percent","label":"Milestone Completion %","in_list_view":1},
+  {"fieldname":"completion_contribution","fieldtype":"Percent","label":"Project Contribution %","description":"How much this milestone contributes to total project completion"},
   {"fieldname":"contractor_section","fieldtype":"Section Break","label":"Assignment & Cost"},
   {"fieldname":"contractor","fieldtype":"Link","label":"Contractor","options":"Contractor"},
   {"fieldname":"cost_budget","fieldtype":"Link","label":"Linked Budget","options":"Cost Budget"}
