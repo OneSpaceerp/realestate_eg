@@ -1,0 +1,17 @@
+{
+ "actions":[],"allow_import":1,"autoname":"field:type_name",
+ "creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "field_order":["type_name","category","bedrooms","column_break","default_area_sqm","description"],
+ "fields":[
+  {"fieldname":"type_name","fieldtype":"Data","label":"Type Name","reqd":1,"unique":1,"in_list_view":1,"description":"e.g. Studio, 1BR, 2BR, 3BR, Duplex, Penthouse, Villa, Townhouse, Shop, Office"},
+  {"fieldname":"category","fieldtype":"Select","label":"Category","reqd":1,"options":"\nResidential\nCommercial\nAdministrative","in_standard_filter":1},
+  {"fieldname":"bedrooms","fieldtype":"Int","label":"Bedrooms","description":"Number of bedrooms (residential only)"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"default_area_sqm","fieldtype":"Float","label":"Default Area (sqm)","precision":"2"},
+  {"fieldname":"description","fieldtype":"Small Text","label":"Description"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Project Structure","name":"Unit Type","naming_rule":"By fieldname","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Developer Admin","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

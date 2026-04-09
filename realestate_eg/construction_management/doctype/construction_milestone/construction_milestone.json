@@ -1,0 +1,26 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","milestone_name","project","zone","building","column_break","status","expected_start_date","expected_end_date","actual_start_date","actual_end_date","completion_pct","contractor_section","contractor","cost_budget"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"MST-.YYYY.-.####.","reqd":1,"default":"MST-.YYYY.-.####."},
+  {"fieldname":"milestone_name","fieldtype":"Data","label":"Milestone Name","reqd":1,"in_list_view":1},
+  {"fieldname":"project","fieldtype":"Link","label":"Project","options":"Real Estate Project","reqd":1,"in_standard_filter":1},
+  {"fieldname":"zone","fieldtype":"Link","label":"Zone","options":"Project Zone"},
+  {"fieldname":"building","fieldtype":"Link","label":"Building","options":"Building"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nPlanning\nIn Progress\nCompleted\nDelayed","default":"Planning","in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"expected_start_date","fieldtype":"Date","label":"Expected Start"},
+  {"fieldname":"expected_end_date","fieldtype":"Date","label":"Expected End"},
+  {"fieldname":"actual_start_date","fieldtype":"Date","label":"Actual Start"},
+  {"fieldname":"actual_end_date","fieldtype":"Date","label":"Actual End"},
+  {"fieldname":"completion_pct","fieldtype":"Percent","label":"Completion %","in_list_view":1},
+  {"fieldname":"contractor_section","fieldtype":"Section Break","label":"Assignment & Cost"},
+  {"fieldname":"contractor","fieldtype":"Link","label":"Contractor","options":"Contractor"},
+  {"fieldname":"cost_budget","fieldtype":"Link","label":"Linked Budget","options":"Cost Budget"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Construction Management","name":"Construction Milestone","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Developer Admin","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

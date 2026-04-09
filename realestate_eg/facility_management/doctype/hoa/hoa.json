@@ -1,0 +1,27 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","hoa_name","project","zone","building","column_break","formation_date","status","registration_number","contact_section","contact_person","phone","email","bank_section","bank_name","bank_account"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"HOA-.YYYY.-.####.","reqd":1,"default":"HOA-.YYYY.-.####."},
+  {"fieldname":"hoa_name","fieldtype":"Data","label":"Association Name","reqd":1,"in_list_view":1},
+  {"fieldname":"project","fieldtype":"Link","label":"Project","options":"Real Estate Project","in_standard_filter":1},
+  {"fieldname":"zone","fieldtype":"Link","label":"Zone","options":"Project Zone"},
+  {"fieldname":"building","fieldtype":"Link","label":"Building","options":"Building","in_list_view":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"formation_date","fieldtype":"Date","label":"Formation Date","reqd":1},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nActive\nInactive","default":"Active","in_list_view":1},
+  {"fieldname":"registration_number","fieldtype":"Data","label":"Registration Number"},
+  {"fieldname":"contact_section","fieldtype":"Section Break","label":"Contact Info"},
+  {"fieldname":"contact_person","fieldtype":"Data","label":"Contact Person"},
+  {"fieldname":"phone","fieldtype":"Data","label":"Phone"},
+  {"fieldname":"email","fieldtype":"Data","label":"Email"},
+  {"fieldname":"bank_section","fieldtype":"Section Break","label":"Wadeea / Maintenance Bank Account"},
+  {"fieldname":"bank_name","fieldtype":"Data","label":"Bank Name"},
+  {"fieldname":"bank_account","fieldtype":"Data","label":"Bank Account Number"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Facility Management","name":"HOA","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"read":1,"role":"System Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

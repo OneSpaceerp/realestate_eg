@@ -1,0 +1,19 @@
+{
+ "actions":[],"allow_import":1,"autoname":"field:rule_name","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["rule_name","is_active","column_break","priority","field_to_check","operator","value","score_points"],
+ "fields":[
+  {"fieldname":"rule_name","fieldtype":"Data","label":"Rule Name","reqd":1,"unique":1,"in_list_view":1},
+  {"fieldname":"is_active","fieldtype":"Check","label":"Active","default":"1"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"priority","fieldtype":"Int","label":"Priority","default":"0"},
+  {"fieldname":"field_to_check","fieldtype":"Data","label":"Lead Field","reqd":1,"description":"e.g. source, status"},
+  {"fieldname":"operator","fieldtype":"Select","label":"Operator","options":"\n=\n!=\n>\n<\nIn\nNot In","reqd":1},
+  {"fieldname":"value","fieldtype":"Data","label":"Value Check","reqd":1},
+  {"fieldname":"score_points","fieldtype":"Int","label":"Points to Add/Subtract","reqd":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"CRM and Sales","name":"Lead Scoring Rule","naming_rule":"By fieldname","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Sales Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

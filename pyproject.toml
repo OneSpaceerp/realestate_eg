@@ -1,0 +1,28 @@
+[project]
+name = "realestate_eg"
+version = "1.0.0"
+description = "Comprehensive Real Estate & Installment Management for the Egyptian Market"
+authors = [
+    {name = "Nest Software Development", email = "info@nsd-eg.com"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.12"
+readme = "README.md"
+
+dependencies = [
+    "frappe",
+    "erpnext",
+]
+
+[build-system]
+requires = ["flit_core>=3.4"]
+build-backend = "flit_core:buildapi"
+
+[tool.bench]
+app-name = "realestate_eg"
+app-title = "Real Estate Egypt"
+app-publisher = "Nest Software Development"
+app-description = "Comprehensive Real Estate & Installment Management for the Egyptian Market"
+app-email = "info@nsd-eg.com"
+app-license = "MIT"
+required-apps = ["frappe", "erpnext"]

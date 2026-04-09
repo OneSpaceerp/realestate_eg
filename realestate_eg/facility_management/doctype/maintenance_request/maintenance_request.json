@@ -1,0 +1,26 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","property_unit","reported_by","date_reported","column_break","status","category","priority","description_section","description","issue_image","resolution_section","resolution_date","assigned_to","resolution_notes"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"MR-.YYYY.-.####.","reqd":1,"default":"MR-.YYYY.-.####."},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","reqd":1,"in_list_view":1},
+  {"fieldname":"reported_by","fieldtype":"Data","label":"Reported By (Tenant/Owner)","reqd":1,"in_list_view":1},
+  {"fieldname":"date_reported","fieldtype":"Date","label":"Date Reported","reqd":1,"default":"Today"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nOpen\nIn Progress\nResolved\nClosed\nCancelled","default":"Open","in_list_view":1},
+  {"fieldname":"category","fieldtype":"Select","label":"Category","options":"\nPlumbing\nElectrical\nHVAC\nStructural\nGeneral","reqd":1},
+  {"fieldname":"priority","fieldtype":"Select","label":"Priority","options":"\nLow\nMedium\nHigh\nUrgent","default":"Medium","in_list_view":1},
+  {"fieldname":"description_section","fieldtype":"Section Break","label":"Issue Details"},
+  {"fieldname":"description","fieldtype":"Small Text","label":"Description","reqd":1},
+  {"fieldname":"issue_image","fieldtype":"Attach Image","label":"Image"},
+  {"fieldname":"resolution_section","fieldtype":"Section Break","label":"Resolution"},
+  {"fieldname":"resolution_date","fieldtype":"Date","label":"Resolution Date"},
+  {"fieldname":"assigned_to","fieldtype":"Link","label":"Assigned To","options":"User"},
+  {"fieldname":"resolution_notes","fieldtype":"Small Text","label":"Resolution Notes"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Facility Management","name":"Maintenance Request","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Sales Agent","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

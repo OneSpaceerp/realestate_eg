@@ -1,0 +1,38 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","linked_document_type","linked_document_name","invoice_type","column_break","submission_status","signature_status","eta_uuid","eta_qr_code","details_section","issuer_trn","issuer_name","receiver_trn","receiver_name","column_break_det","total_amount","vat_amount","grand_total","submission_timestamp","json_section","json_payload","rejection_reason","hsm_serial","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"ETA-.YYYY.-.####.","reqd":1,"default":"ETA-.YYYY.-.####."},
+  {"fieldname":"linked_document_type","fieldtype":"Link","label":"Document Type","options":"DocType","in_list_view":1},
+  {"fieldname":"linked_document_name","fieldtype":"Dynamic Link","label":"Document Name","options":"linked_document_type","in_list_view":1},
+  {"fieldname":"invoice_type","fieldtype":"Select","label":"Invoice Type","options":"\nE-Invoice\nE-Receipt","in_standard_filter":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"submission_status","fieldtype":"Select","label":"Status","options":"\nPending\nSigned\nAccepted\nRejected\nCancelled","default":"Pending","in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"signature_status","fieldtype":"Select","label":"Signature","options":"\nUnsigned\nSigned","default":"Unsigned"},
+  {"fieldname":"eta_uuid","fieldtype":"Data","label":"ETA UUID","read_only":1,"description":"64-char UUID from ETA"},
+  {"fieldname":"eta_qr_code","fieldtype":"Data","label":"QR Code URL","read_only":1},
+  {"fieldname":"details_section","fieldtype":"Section Break","label":"Details"},
+  {"fieldname":"issuer_trn","fieldtype":"Data","label":"Issuer TRN"},
+  {"fieldname":"issuer_name","fieldtype":"Data","label":"Issuer Name"},
+  {"fieldname":"receiver_trn","fieldtype":"Data","label":"Receiver TRN"},
+  {"fieldname":"receiver_name","fieldtype":"Data","label":"Receiver Name","in_list_view":1},
+  {"fieldname":"column_break_det","fieldtype":"Column Break"},
+  {"fieldname":"total_amount","fieldtype":"Currency","label":"Net Amount","options":"Company:company:default_currency"},
+  {"fieldname":"vat_amount","fieldtype":"Currency","label":"VAT Amount","options":"Company:company:default_currency"},
+  {"fieldname":"grand_total","fieldtype":"Currency","label":"Grand Total","options":"Company:company:default_currency"},
+  {"fieldname":"submission_timestamp","fieldtype":"Datetime","label":"Submission Timestamp","read_only":1},
+  {"fieldname":"json_section","fieldtype":"Section Break","label":"Technical","collapsible":1},
+  {"fieldname":"json_payload","fieldtype":"Code","label":"JSON Payload","options":"JSON"},
+  {"fieldname":"rejection_reason","fieldtype":"Small Text","label":"Rejection Reason","read_only":1},
+  {"fieldname":"hsm_serial","fieldtype":"Data","label":"HSM Serial","read_only":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"ETA E-Invoice","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Tax and Compliance","name":"ETA E-Invoice","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","write":1},
+  {"read":1,"role":"Finance Manager"}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

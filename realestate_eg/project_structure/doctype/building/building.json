@@ -1,0 +1,18 @@
+{
+ "actions":[],"allow_import":1,"autoname":"field:building_name",
+ "creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "field_order":["building_name","zone","total_floors","total_units","column_break","building_type","status"],
+ "fields":[
+  {"fieldname":"building_name","fieldtype":"Data","label":"Building Name","reqd":1,"unique":1,"in_list_view":1},
+  {"fieldname":"zone","fieldtype":"Link","label":"Zone","options":"Project Zone","reqd":1,"in_standard_filter":1},
+  {"fieldname":"total_floors","fieldtype":"Int","label":"Total Floors"},
+  {"fieldname":"total_units","fieldtype":"Int","label":"Total Units","read_only":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"building_type","fieldtype":"Select","label":"Building Type","options":"\nResidential\nCommercial\nMixed Use\nAdministrative","in_standard_filter":1},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nPlanning\nUnder Construction\nCompleted","default":"Planning"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Project Structure","name":"Building","naming_rule":"By fieldname","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Developer Admin","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

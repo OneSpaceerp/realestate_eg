@@ -1,0 +1,19 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","eta_e_invoice","submission_time","column_break","status","error_code","response_section","raw_response"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"ETAL-.YYYY.-.####.","reqd":1,"default":"ETAL-.YYYY.-.####."},
+  {"fieldname":"eta_e_invoice","fieldtype":"Link","label":"ETA E-Invoice","options":"ETA E-Invoice","reqd":1,"in_list_view":1},
+  {"fieldname":"submission_time","fieldtype":"Datetime","label":"Time","reqd":1,"default":"Today","in_list_view":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nSuccess\nFailed","in_list_view":1},
+  {"fieldname":"error_code","fieldtype":"Data","label":"Error Code"},
+  {"fieldname":"response_section","fieldtype":"Section Break","label":"Raw Response"},
+  {"fieldname":"raw_response","fieldtype":"Code","label":"JSON Response","options":"JSON"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Tax and Compliance","name":"ETA Submission Log","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"read":1,"role":"System Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

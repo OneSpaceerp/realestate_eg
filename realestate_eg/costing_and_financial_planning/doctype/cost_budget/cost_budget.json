@@ -1,0 +1,20 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","project","zone","building","column_break","status","total_estimated_cost","total_actual_cost","cost_lines"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"CB-.YYYY.-.####.","reqd":1,"default":"CB-.YYYY.-.####."},
+  {"fieldname":"project","fieldtype":"Link","label":"Project","options":"Real Estate Project","reqd":1},
+  {"fieldname":"zone","fieldtype":"Link","label":"Zone","options":"Project Zone"},
+  {"fieldname":"building","fieldtype":"Link","label":"Building","options":"Building"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nApproved\nActive\nClosed","default":"Draft","in_list_view":1},
+  {"fieldname":"total_estimated_cost","fieldtype":"Currency","label":"Total Estimated Cost","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"total_actual_cost","fieldtype":"Currency","label":"Total Actual Cost","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"cost_lines","fieldtype":"Table","label":"Cost Lines","options":"Project Cost Line"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Costing and Financial Planning","name":"Cost Budget","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"read":1,"role":"Finance Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

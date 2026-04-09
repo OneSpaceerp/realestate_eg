@@ -1,0 +1,25 @@
+<h2>Lease Expiry Notice</h2>
+<p>Dear {{ tenant_name }},</p>
+
+<p>This is to inform you that your lease for <strong>{{ property_unit }}</strong> will expire on <strong>{{ expiry_date }}</strong> ({{ days_remaining }} days remaining).</p>
+
+<table style="width:100%; border-collapse:collapse; margin:15px 0;">
+  <tr style="background:#f5f5f5;">
+    <td style="padding:8px; border:1px solid #ddd;"><strong>Property Unit</strong></td>
+    <td style="padding:8px; border:1px solid #ddd;">{{ property_unit }}</td>
+  </tr>
+  <tr>
+    <td style="padding:8px; border:1px solid #ddd;"><strong>Lease Type</strong></td>
+    <td style="padding:8px; border:1px solid #ddd;">{{ lease_type }}</td>
+  </tr>
+  <tr style="background:#f5f5f5;">
+    <td style="padding:8px; border:1px solid #ddd;"><strong>Monthly Rent</strong></td>
+    <td style="padding:8px; border:1px solid #ddd;">{{ monthly_rent }}</td>
+  </tr>
+  <tr>
+    <td style="padding:8px; border:1px solid #ddd;"><strong>Expiry Date</strong></td>
+    <td style="padding:8px; border:1px solid #ddd;">{{ expiry_date }}</td>
+  </tr>
+</table>
+
+<p>Please contact the property management office to discuss renewal options.</p>

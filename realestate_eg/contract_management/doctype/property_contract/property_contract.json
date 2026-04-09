@@ -1,0 +1,61 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":[
+  "contract_section","naming_series","contract_number","contract_date","buyer_profile","property_unit","project",
+  "column_break_contract","status","contract_type","company","contract_template",
+  "financials_section","total_unit_price","reservation_fee","down_payment_pct","down_payment_amount",
+  "column_break_fin","financed_amount","payment_plan_months","installment_frequency","admin_fee_pct",
+  "installment_plan_link_section","installment_plan",
+  "signature_section","digital_signature_status","digital_signature_url",
+  "terms_section","terms_and_conditions","clauses",
+  "amended_from"
+ ],
+ "fields":[
+  {"fieldname":"contract_section","fieldtype":"Section Break","label":"Contract Details"},
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"PC-.YYYY.-.####.","reqd":1,"default":"PC-.YYYY.-.####."},
+  {"fieldname":"contract_number","fieldtype":"Data","label":"Contract Number","unique":1,"in_list_view":1},
+  {"fieldname":"contract_date","fieldtype":"Date","label":"Contract Date","reqd":1,"default":"Today"},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","reqd":1,"in_standard_filter":1},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","reqd":1,"in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"project","fieldtype":"Link","label":"Project","options":"Real Estate Project","fetch_from":"property_unit.project","read_only":1},
+  {"fieldname":"column_break_contract","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nActive\nFully Executed\nCancelled\nExpired","default":"Draft","in_list_view":1,"in_standard_filter":1,"allow_on_submit":1},
+  {"fieldname":"contract_type","fieldtype":"Select","label":"Contract Type","reqd":1,"options":"\nSale\nRental\nRent-to-Own","in_standard_filter":1},
+  {"fieldname":"company","fieldtype":"Link","label":"Company","options":"Company","reqd":1},
+  {"fieldname":"contract_template","fieldtype":"Link","label":"Contract Template","options":"Contract Template"},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Financial Terms"},
+  {"fieldname":"total_unit_price","fieldtype":"Currency","label":"Total Price","reqd":1,"options":"Company:company:default_currency","fetch_from":"property_unit.total_price"},
+  {"fieldname":"reservation_fee","fieldtype":"Currency","label":"Reservation Fee","options":"Company:company:default_currency"},
+  {"fieldname":"down_payment_pct","fieldtype":"Percent","label":"Down Payment %"},
+  {"fieldname":"down_payment_amount","fieldtype":"Currency","label":"Down Payment Amount","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"financed_amount","fieldtype":"Currency","label":"Financed Amount","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"payment_plan_months","fieldtype":"Int","label":"Payment Plan (Months)","reqd":1,"default":"48"},
+  {"fieldname":"installment_frequency","fieldtype":"Select","label":"Frequency","options":"\nMonthly\nQuarterly\nSemi-Annual\nAnnual","default":"Monthly"},
+  {"fieldname":"admin_fee_pct","fieldtype":"Percent","label":"Admin Fee %"},
+  {"fieldname":"installment_plan_link_section","fieldtype":"Section Break","label":"Linked Plan"},
+  {"fieldname":"installment_plan","fieldtype":"Link","label":"Installment Plan","options":"Installment Plan","read_only":1,"allow_on_submit":1},
+  {"fieldname":"signature_section","fieldtype":"Section Break","label":"Digital Signature","collapsible":1},
+  {"fieldname":"digital_signature_status","fieldtype":"Select","label":"Signature Status","options":"\nNot Initiated\nPending\nPartially Signed\nFully Executed","default":"Not Initiated","allow_on_submit":1},
+  {"fieldname":"digital_signature_url","fieldtype":"Data","label":"Signature URL","read_only":1,"allow_on_submit":1},
+  {"fieldname":"terms_section","fieldtype":"Section Break","label":"Terms & Conditions"},
+  {"fieldname":"terms_and_conditions","fieldtype":"Text Editor","label":"Terms and Conditions"},
+  {"fieldname":"clauses","fieldtype":"Table","label":"Custom Clauses","options":"Contract Clause"},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Property Contract","print_hide":1,"read_only":1}
+ ],
+ "links":[
+  {"group":"Financial","link_doctype":"Installment Plan","link_fieldname":"property_contract"},
+  {"group":"Cancellation","link_doctype":"Unit Cancellation","link_fieldname":"property_contract"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Contract Management","name":"Property Contract","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"cancel":1,"create":1,"delete":1,"email":1,"export":1,"print":1,"read":1,"report":1,"role":"System Manager","select":1,"share":1,"submit":1,"write":1},
+  {"cancel":1,"create":1,"read":1,"role":"Sales Manager","select":1,"submit":1,"write":1},
+  {"read":1,"role":"Finance Manager","select":1},
+  {"read":1,"role":"Legal Counsel","select":1}
+ ],
+ "search_fields":"contract_number,buyer_profile,property_unit",
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

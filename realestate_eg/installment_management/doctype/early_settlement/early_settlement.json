@@ -1,0 +1,29 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","installment_plan","buyer_profile","settlement_date","column_break","status","reason","financials_section","original_outstanding","discount_pct","discount_amount","column_break_fin","net_settlement_amount","payment_reference","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"SET-.YYYY.-.####.","reqd":1,"default":"SET-.YYYY.-.####."},
+  {"fieldname":"installment_plan","fieldtype":"Link","label":"Installment Plan","options":"Installment Plan","reqd":1,"in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","fetch_from":"installment_plan.buyer_profile","read_only":1},
+  {"fieldname":"settlement_date","fieldtype":"Date","label":"Settlement Date","reqd":1,"default":"Today"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nApproved\nPaid\nRejected","default":"Draft","in_list_view":1,"allow_on_submit":1},
+  {"fieldname":"reason","fieldtype":"Small Text","label":"Notes"},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Settlement Financials"},
+  {"fieldname":"original_outstanding","fieldtype":"Currency","label":"Original Outstanding","fetch_from":"installment_plan.total_outstanding","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"discount_pct","fieldtype":"Percent","label":"Discount % (Waiver)"},
+  {"fieldname":"discount_amount","fieldtype":"Currency","label":"Discount Amount","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"net_settlement_amount","fieldtype":"Currency","label":"Net Settlement Due","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"payment_reference","fieldtype":"Link","label":"Payment Entry","options":"Payment Entry","read_only":1,"allow_on_submit":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Early Settlement","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Installment Management","name":"Early Settlement","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"cancel":1,"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","submit":1,"write":1},
+  {"create":1,"read":1,"role":"Finance Manager","submit":1,"write":1}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

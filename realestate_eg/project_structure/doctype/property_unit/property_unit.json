@@ -1,0 +1,270 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:unit_code",
+ "creation": "2026-04-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "unit_details_section",
+  "unit_code",
+  "project",
+  "phase",
+  "zone",
+  "building",
+  "unit_type",
+  "floor_number",
+  "column_break_unit",
+  "status",
+  "current_buyer",
+  "installment_plan",
+  "national_registry_id",
+  "finishing_level",
+  "view_type",
+  "area_section",
+  "gross_area_sqm",
+  "built_up_area_sqm",
+  "column_break_area",
+  "garden_area_sqm",
+  "roof_area_sqm",
+  "pricing_section",
+  "base_price_per_sqm",
+  "total_price",
+  "column_break_pricing",
+  "allocated_land_cost",
+  "allocated_infra_cost",
+  "unit_total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Unit Details"
+  },
+  {
+   "fieldname": "unit_code",
+   "fieldtype": "Data",
+   "label": "Unit Code",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Auto-generated: PROJECT-PHASE-ZONE-BLDG-UNIT"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Real Estate Project",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "phase",
+   "fieldtype": "Link",
+   "label": "Phase",
+   "options": "Project Phase"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Link",
+   "label": "Zone",
+   "options": "Project Zone"
+  },
+  {
+   "fieldname": "building",
+   "fieldtype": "Link",
+   "label": "Building",
+   "options": "Building"
+  },
+  {
+   "fieldname": "unit_type",
+   "fieldtype": "Link",
+   "label": "Unit Type",
+   "options": "Unit Type",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "floor_number",
+   "fieldtype": "Int",
+   "label": "Floor Number"
+  },
+  {
+   "fieldname": "column_break_unit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "reqd": 1,
+   "options": "\nAvailable\nReserved\nUnder Contract\nSold\nDelivered\nCancelled\nResale",
+   "default": "Available",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "current_buyer",
+   "fieldtype": "Link",
+   "label": "Current Buyer",
+   "options": "Buyer Profile",
+   "depends_on": "eval:['Under Contract','Sold','Delivered'].includes(doc.status)"
+  },
+  {
+   "fieldname": "installment_plan",
+   "fieldtype": "Link",
+   "label": "Installment Plan",
+   "options": "Installment Plan"
+  },
+  {
+   "fieldname": "national_registry_id",
+   "fieldtype": "Data",
+   "label": "National Registry ID"
+  },
+  {
+   "fieldname": "finishing_level",
+   "fieldtype": "Select",
+   "label": "Finishing Level",
+   "reqd": 1,
+   "options": "\nCore & Shell\nSemi-Finished\nFully Finished\nFurnished",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "view_type",
+   "fieldtype": "Select",
+   "label": "View Type",
+   "options": "\nGarden\nPool\nStreet\nSea\nLandmark\nInternal"
+  },
+  {
+   "fieldname": "area_section",
+   "fieldtype": "Section Break",
+   "label": "Area Details"
+  },
+  {
+   "fieldname": "gross_area_sqm",
+   "fieldtype": "Float",
+   "label": "Gross Area (sqm)",
+   "reqd": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "built_up_area_sqm",
+   "fieldtype": "Float",
+   "label": "Built-Up Area (sqm)",
+   "reqd": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_area",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "garden_area_sqm",
+   "fieldtype": "Float",
+   "label": "Garden Area (sqm)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "roof_area_sqm",
+   "fieldtype": "Float",
+   "label": "Roof Area (sqm)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "base_price_per_sqm",
+   "fieldtype": "Currency",
+   "label": "Base Price per sqm",
+   "reqd": 1,
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Currency",
+   "label": "Total Price",
+   "read_only": 1,
+   "options": "Company:company:default_currency",
+   "in_list_view": 1,
+   "description": "Auto-calculated from area and pricing rules"
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "allocated_land_cost",
+   "fieldtype": "Currency",
+   "label": "Allocated Land Cost",
+   "read_only": 1,
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "allocated_infra_cost",
+   "fieldtype": "Currency",
+   "label": "Allocated Infrastructure Cost",
+   "read_only": 1,
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "unit_total_cost",
+   "fieldtype": "Currency",
+   "label": "Unit Total Cost",
+   "read_only": 1,
+   "options": "Company:company:default_currency",
+   "description": "Sum of all allocated costs"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "group": "Sales",
+   "link_doctype": "Property Contract",
+   "link_fieldname": "property_unit"
+  },
+  {
+   "group": "Sales",
+   "link_doctype": "Property Quotation",
+   "link_fieldname": "property_unit"
+  },
+  {
+   "group": "Financial",
+   "link_doctype": "Installment Plan",
+   "link_fieldname": "property_unit"
+  }
+ ],
+ "modified": "2026-04-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Project Structure",
+ "name": "Property Unit",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1, "delete": 1, "email": 1, "export": 1, "print": 1,
+   "read": 1, "report": 1, "role": "System Manager", "select": 1,
+   "share": 1, "write": 1
+  },
+  {
+   "create": 1, "email": 1, "export": 1, "print": 1, "read": 1,
+   "report": 1, "role": "Developer Admin", "select": 1, "share": 1, "write": 1
+  },
+  {
+   "read": 1, "report": 1, "role": "Sales Manager", "select": 1
+  },
+  {
+   "read": 1, "report": 1, "role": "Sales Agent", "select": 1
+  }
+ ],
+ "search_fields": "unit_code,project,unit_type,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

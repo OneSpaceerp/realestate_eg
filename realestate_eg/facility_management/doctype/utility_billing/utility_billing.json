@@ -1,0 +1,27 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","property_unit","tenant","utility_type","billing_period_start","billing_period_end","column_break","status","meter_reading_previous","meter_reading_current","consumption","rate_per_unit","total_amount","due_date","payment_reference","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"UB-.YYYY.-.####.","reqd":1,"default":"UB-.YYYY.-.####."},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","reqd":1,"in_list_view":1},
+  {"fieldname":"tenant","fieldtype":"Link","label":"Tenant","options":"Tenant","reqd":1,"in_list_view":1},
+  {"fieldname":"utility_type","fieldtype":"Select","label":"Utility Type","options":"\nElectricity\nWater\nGas\nInternet","reqd":1,"in_standard_filter":1},
+  {"fieldname":"billing_period_start","fieldtype":"Date","label":"Period Start","reqd":1},
+  {"fieldname":"billing_period_end","fieldtype":"Date","label":"Period End","reqd":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nUnpaid\nPaid\nCancelled","default":"Draft","in_list_view":1,"allow_on_submit":1},
+  {"fieldname":"meter_reading_previous","fieldtype":"Float","label":"Prev Reading"},
+  {"fieldname":"meter_reading_current","fieldtype":"Float","label":"Current Reading"},
+  {"fieldname":"consumption","fieldtype":"Float","label":"Consumption","read_only":1},
+  {"fieldname":"rate_per_unit","fieldtype":"Currency","label":"Rate per Unit","options":"Company:company:default_currency"},
+  {"fieldname":"total_amount","fieldtype":"Currency","label":"Total Amount","read_only":1,"options":"Company:company:default_currency","in_list_view":1},
+  {"fieldname":"due_date","fieldtype":"Date","label":"Due Date","reqd":1},
+  {"fieldname":"payment_reference","fieldtype":"Link","label":"Payment Entry","options":"Payment Entry","read_only":1,"allow_on_submit":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Utility Billing","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Facility Management","name":"Utility Billing","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"cancel":1,"create":1,"read":1,"role":"Finance Manager","submit":1,"write":1},{"create":1,"read":1,"role":"System Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

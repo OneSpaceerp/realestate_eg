@@ -1,0 +1,17 @@
+{
+ "actions":[],"allow_import":1,"autoname":"field:template_name","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["template_name","contract_type","is_active","column_break","base_terms","clauses"],
+ "fields":[
+  {"fieldname":"template_name","fieldtype":"Data","label":"Template Name","reqd":1,"unique":1,"in_list_view":1},
+  {"fieldname":"contract_type","fieldtype":"Select","label":"Contract Type","options":"\nSale\nRental\nRent-to-Own","reqd":1,"in_list_view":1},
+  {"fieldname":"is_active","fieldtype":"Check","label":"Active","default":"1"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"base_terms","fieldtype":"Text Editor","label":"Base Terms and Conditions"},
+  {"fieldname":"clauses","fieldtype":"Table","label":"Default Clauses","options":"Contract Clause"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Contract Management","name":"Contract Template","naming_rule":"By fieldname","owner":"Administrator",
+ "permissions":[{"create":1,"read":1,"role":"Legal Counsel","write":1},{"read":1,"role":"Sales Manager"}],
+ "sort_field":"modified","sort_order":"DESC"
+}

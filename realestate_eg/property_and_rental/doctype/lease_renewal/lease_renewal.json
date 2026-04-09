@@ -1,0 +1,28 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","original_lease","tenant","property_unit","renewal_date","column_break","status","new_lease_start","new_lease_end","financials_section","old_rent","increase_pct","new_rent","column_break_fin","new_security_deposit","new_lease_contract","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"LR-.YYYY.-.####.","reqd":1,"default":"LR-.YYYY.-.####."},
+  {"fieldname":"original_lease","fieldtype":"Link","label":"Original Lease","options":"Lease Contract","reqd":1,"in_list_view":1},
+  {"fieldname":"tenant","fieldtype":"Link","label":"Tenant","options":"Tenant","fetch_from":"original_lease.tenant","read_only":1,"in_list_view":1},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","fetch_from":"original_lease.property_unit","read_only":1},
+  {"fieldname":"renewal_date","fieldtype":"Date","label":"Renewal Date","reqd":1,"default":"Today"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nPending Review\nApproved\nRejected","default":"Draft","in_list_view":1,"allow_on_submit":1},
+  {"fieldname":"new_lease_start","fieldtype":"Date","label":"New Lease Start","reqd":1},
+  {"fieldname":"new_lease_end","fieldtype":"Date","label":"New Lease End","reqd":1},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Financial Terms"},
+  {"fieldname":"old_rent","fieldtype":"Currency","label":"Old Rent","fetch_from":"original_lease.monthly_rent","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"increase_pct","fieldtype":"Percent","label":"Increase %","default":"10"},
+  {"fieldname":"new_rent","fieldtype":"Currency","label":"New Rent","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"new_security_deposit","fieldtype":"Currency","label":"New Security Deposit","options":"Company:company:default_currency"},
+  {"fieldname":"new_lease_contract","fieldtype":"Link","label":"New Lease Contract","options":"Lease Contract","read_only":1,"allow_on_submit":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Lease Renewal","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Property and Rental","name":"Lease Renewal","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"cancel":1,"create":1,"read":1,"role":"Sales Manager","submit":1,"write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

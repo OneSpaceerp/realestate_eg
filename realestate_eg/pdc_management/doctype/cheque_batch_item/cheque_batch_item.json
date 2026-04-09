@@ -1,0 +1,16 @@
+{
+ "actions":[],"creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "istable":1,
+ "field_order":["post_dated_cheque","cheque_number","drawee_bank","due_date","amount","buyer_profile"],
+ "fields":[
+  {"fieldname":"post_dated_cheque","fieldtype":"Link","label":"Post Dated Cheque","options":"Post Dated Cheque","reqd":1,"in_list_view":1},
+  {"fieldname":"cheque_number","fieldtype":"Data","label":"Cheque Number","fetch_from":"post_dated_cheque.cheque_number","read_only":1,"in_list_view":1},
+  {"fieldname":"drawee_bank","fieldtype":"Data","label":"Drawee Bank","fetch_from":"post_dated_cheque.drawee_bank","read_only":1,"in_list_view":1},
+  {"fieldname":"due_date","fieldtype":"Date","label":"Due Date","fetch_from":"post_dated_cheque.due_date","read_only":1,"in_list_view":1},
+  {"fieldname":"amount","fieldtype":"Currency","label":"Amount","fetch_from":"post_dated_cheque.amount","read_only":1,"in_list_view":1,"options":"Company:company:default_currency"},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","fetch_from":"post_dated_cheque.buyer_profile","read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"PDC Management","name":"Cheque Batch Item","owner":"Administrator",
+ "permissions":[],"sort_field":"modified","sort_order":"DESC"
+}

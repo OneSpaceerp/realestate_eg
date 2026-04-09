@@ -1,0 +1,16 @@
+{
+ "actions":[],"creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "istable":1,
+ "field_order":["item","description","cost_category","estimated_cost","actual_cost","variance"],
+ "fields":[
+  {"fieldname":"item","fieldtype":"Link","label":"Item/Service","options":"Item","in_list_view":1},
+  {"fieldname":"description","fieldtype":"Data","label":"Description","in_list_view":1},
+  {"fieldname":"cost_category","fieldtype":"Select","label":"Cost Category","options":"\nMaterial\nLabor\nEquipment\nSubcontractor\nOverhead"},
+  {"fieldname":"estimated_cost","fieldtype":"Currency","label":"Estimated Cost","options":"Company:company:default_currency"},
+  {"fieldname":"actual_cost","fieldtype":"Currency","label":"Actual Cost","options":"Company:company:default_currency"},
+  {"fieldname":"variance","fieldtype":"Currency","label":"Variance","read_only":1,"options":"Company:company:default_currency"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Costing and Financial Planning","name":"Project Cost Line","owner":"Administrator",
+ "permissions":[],"sort_field":"modified","sort_order":"DESC"
+}

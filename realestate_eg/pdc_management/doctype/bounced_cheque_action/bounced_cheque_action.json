@@ -1,0 +1,26 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","post_dated_cheque","buyer_profile","bounce_date","bounce_reason","bounce_count","column_break","cheque_amount","status","recommended_action","resolution_notes","resolution_date"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"BCA-.YYYY.-.####.","reqd":1,"default":"BCA-.YYYY.-.####."},
+  {"fieldname":"post_dated_cheque","fieldtype":"Link","label":"Post Dated Cheque","options":"Post Dated Cheque","reqd":1,"in_list_view":1},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","reqd":1,"in_list_view":1},
+  {"fieldname":"bounce_date","fieldtype":"Date","label":"Bounce Date","reqd":1},
+  {"fieldname":"bounce_reason","fieldtype":"Select","label":"Reason","options":"\nInsufficient Funds\nAccount Closed\nStop Payment\nSignature Mismatch\nStale Date\nOther","in_list_view":1},
+  {"fieldname":"bounce_count","fieldtype":"Int","label":"Bounce Count"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"cheque_amount","fieldtype":"Currency","label":"Amount","options":"Company:company:default_currency","in_list_view":1},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nPending\nRedeposited\nReplaced\nLegal Action\nResolved","default":"Pending","in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"recommended_action","fieldtype":"Select","label":"Recommended Action","options":"\nRedeposit\nReplace Cheque\nLegal Action\nCollect Cash"},
+  {"fieldname":"resolution_notes","fieldtype":"Small Text","label":"Resolution Notes"},
+  {"fieldname":"resolution_date","fieldtype":"Date","label":"Resolution Date"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"PDC Management","name":"Bounced Cheque Action","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"create":1,"delete":1,"read":1,"role":"System Manager","write":1},
+  {"create":1,"read":1,"role":"Finance Manager","write":1}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

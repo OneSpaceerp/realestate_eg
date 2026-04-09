@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [ version-16 ]
+  pull_request:
+    branches: [ version-16 ]
+
+concurrency:
+  group: develop-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+
+    env:
+      SITE_NAME: test_site
+
+    services:
+      mariadb:
+        image: mariadb:11.3
+        env:
+          MARIADB_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+
+      redis-cache:
+        image: redis:alpine
+        ports:
+          - 13000:6379
+
+      redis-queue:
+        image: redis:alpine
+        ports:
+          - 11000:6379
+
+    steps:
+      - name: Clone frappe
+        uses: actions/checkout@v4
+        with:
+          repository: frappe/frappe
+          branch: version-16
+          path: frappe-bench/apps/frappe
+
+      - name: Clone erpnext
+        uses: actions/checkout@v4
+        with:
+          repository: frappe/erpnext
+          branch: version-16
+          path: frappe-bench/apps/erpnext
+
+      - name: Clone realestate_eg
+        uses: actions/checkout@v4
+        with:
+          path: frappe-bench/apps/realestate_eg
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install bench
+        run: pip install frappe-bench
+
+      - name: Initialize bench
+        run: |
+          cd frappe-bench
+          bench init --skip-redis-config-generation --skip-assets --frappe-path apps/frappe .
+        env:
+          CI: true
+
+      - name: Configure MariaDB
+        run: |
+          mysql --host 127.0.0.1 --port 3306 -u root -proot \
+            -e "SET GLOBAL character_set_server = 'utf8mb4';" \
+            -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci';"
+
+      - name: Create test site
+        run: |
+          cd frappe-bench
+          bench new-site $SITE_NAME \
+            --mariadb-root-password root \
+            --admin-password admin \
+            --db-host 127.0.0.1 \
+            --no-setup
+        env:
+          CI: true
+
+      - name: Install apps
+        run: |
+          cd frappe-bench
+          bench --site $SITE_NAME install-app erpnext
+          bench --site $SITE_NAME install-app realestate_eg
+
+      - name: Run tests
+        run: |
+          cd frappe-bench
+          bench --site $SITE_NAME run-tests --app realestate_eg
+        env:
+          CI: true

@@ -1,0 +1,23 @@
+{
+ "actions":[],"allow_import":1,"autoname":"format:{project}-{unit_type}",
+ "creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "field_order":["project","unit_type","column_break","floor_premium_pct","view_premium_pct","finishing_premium","cash_discount_pct","early_bird_discount_pct","validity_date"],
+ "fields":[
+  {"fieldname":"project","fieldtype":"Link","label":"Project","options":"Real Estate Project","reqd":1,"in_standard_filter":1},
+  {"fieldname":"unit_type","fieldtype":"Link","label":"Unit Type","options":"Unit Type","reqd":1,"in_standard_filter":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"floor_premium_pct","fieldtype":"Percent","label":"Floor Premium % (per floor)","description":"Applied per floor number"},
+  {"fieldname":"view_premium_pct","fieldtype":"Percent","label":"View Premium %"},
+  {"fieldname":"finishing_premium","fieldtype":"Currency","label":"Finishing Premium (flat)","options":"Company:company:default_currency"},
+  {"fieldname":"cash_discount_pct","fieldtype":"Percent","label":"Cash Discount %"},
+  {"fieldname":"early_bird_discount_pct","fieldtype":"Percent","label":"Early Bird Discount %"},
+  {"fieldname":"validity_date","fieldtype":"Date","label":"Valid Until"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Project Structure","name":"Unit Pricing Rule","naming_rule":"Expression (old style)","owner":"Administrator",
+ "permissions":[
+  {"create":1,"delete":1,"read":1,"role":"System Manager","write":1},
+  {"create":1,"read":1,"role":"Developer Admin","write":1}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

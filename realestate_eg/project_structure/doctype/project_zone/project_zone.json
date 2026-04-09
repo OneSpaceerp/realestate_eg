@@ -1,0 +1,14 @@
+{
+ "actions":[],"allow_import":1,"autoname":"field:zone_name",
+ "creation":"2026-04-09 00:00:00.000000","doctype":"DocType","engine":"InnoDB",
+ "field_order":["zone_name","phase","description"],
+ "fields":[
+  {"fieldname":"zone_name","fieldtype":"Data","label":"Zone Name","reqd":1,"unique":1,"in_list_view":1},
+  {"fieldname":"phase","fieldtype":"Link","label":"Phase","options":"Project Phase","reqd":1,"in_standard_filter":1},
+  {"fieldname":"description","fieldtype":"Small Text","label":"Description"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Project Structure","name":"Project Zone","naming_rule":"By fieldname","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Developer Admin","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

@@ -1,0 +1,38 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","buyer_name","customer","national_id","date_of_birth","column_break","phone","email","address","nationality","is_foreign_buyer","kyc_section","kyc_verified","kyc_verification_date","kyc_document","financial_section","monthly_income","total_units_owned","total_outstanding_balance","column_break_fin","tax_registration_number","bank_name","bank_account"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"BP-.YYYY.-.####.","reqd":1,"default":"BP-.YYYY.-.####."},
+  {"fieldname":"buyer_name","fieldtype":"Data","label":"Buyer Name","reqd":1,"in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"customer","fieldtype":"Link","label":"Customer","options":"Customer","reqd":1,"unique":1,"in_standard_filter":1},
+  {"fieldname":"national_id","fieldtype":"Data","label":"National ID","reqd":1,"description":"14-digit Egyptian National ID"},
+  {"fieldname":"date_of_birth","fieldtype":"Date","label":"Date of Birth"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"phone","fieldtype":"Data","label":"Phone","options":"Phone"},
+  {"fieldname":"email","fieldtype":"Data","label":"Email","options":"Email"},
+  {"fieldname":"address","fieldtype":"Small Text","label":"Address"},
+  {"fieldname":"nationality","fieldtype":"Data","label":"Nationality","default":"Egyptian"},
+  {"fieldname":"is_foreign_buyer","fieldtype":"Check","label":"Foreign Buyer","description":"Subject to additional FX compliance"},
+  {"fieldname":"kyc_section","fieldtype":"Section Break","label":"KYC Verification","collapsible":1},
+  {"fieldname":"kyc_verified","fieldtype":"Check","label":"KYC Verified"},
+  {"fieldname":"kyc_verification_date","fieldtype":"Date","label":"KYC Verification Date"},
+  {"fieldname":"kyc_document","fieldtype":"Attach","label":"KYC Document"},
+  {"fieldname":"financial_section","fieldtype":"Section Break","label":"Financial Profile"},
+  {"fieldname":"monthly_income","fieldtype":"Currency","label":"Monthly Income","options":"Company:company:default_currency"},
+  {"fieldname":"total_units_owned","fieldtype":"Int","label":"Total Units Owned","read_only":1},
+  {"fieldname":"total_outstanding_balance","fieldtype":"Currency","label":"Total Outstanding","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"tax_registration_number","fieldtype":"Data","label":"Tax Registration Number"},
+  {"fieldname":"bank_name","fieldtype":"Data","label":"Bank Name"},
+  {"fieldname":"bank_account","fieldtype":"Data","label":"Bank Account"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"CRM and Sales","name":"Buyer Profile","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","write":1},
+  {"create":1,"read":1,"role":"Sales Manager","write":1},
+  {"create":1,"read":1,"role":"Sales Agent","write":1}
+ ],
+ "search_fields":"buyer_name,customer,national_id","sort_field":"modified","sort_order":"DESC","track_changes":1
+}

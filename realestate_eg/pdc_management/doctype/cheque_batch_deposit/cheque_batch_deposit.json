@@ -1,0 +1,29 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","deposit_date","company","deposit_bank_account","column_break","status","total_cheques","total_amount","deposit_reference_number","cheques_section","cheques","electronic_clearing_section","iso20022_generated","clearing_file_url","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"CBD-.YYYY.-.####.","reqd":1,"default":"CBD-.YYYY.-.####."},
+  {"fieldname":"deposit_date","fieldtype":"Date","label":"Deposit Date","reqd":1,"default":"Today","in_list_view":1},
+  {"fieldname":"company","fieldtype":"Link","label":"Company","options":"Company","reqd":1},
+  {"fieldname":"deposit_bank_account","fieldtype":"Link","label":"Bank Account","options":"Account","reqd":1,"in_list_view":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nSubmitted to Bank\nProcessed\nCancelled","default":"Draft","in_list_view":1,"in_standard_filter":1,"allow_on_submit":1},
+  {"fieldname":"total_cheques","fieldtype":"Int","label":"Total Cheques","read_only":1,"in_list_view":1},
+  {"fieldname":"total_amount","fieldtype":"Currency","label":"Total Amount","read_only":1,"options":"Company:company:default_currency","in_list_view":1},
+  {"fieldname":"deposit_reference_number","fieldtype":"Data","label":"Bank Deposit Reference"},
+  {"fieldname":"cheques_section","fieldtype":"Section Break","label":"Cheques included in Batch"},
+  {"fieldname":"cheques","fieldtype":"Table","label":"Cheques","options":"Cheque Batch Item","reqd":1},
+  {"fieldname":"electronic_clearing_section","fieldtype":"Section Break","label":"Electronic Clearing (ISO 20022)"},
+  {"fieldname":"iso20022_generated","fieldtype":"Check","label":"ISO 20022 File Generated","read_only":1},
+  {"fieldname":"clearing_file_url","fieldtype":"Data","label":"Clearing File URL","read_only":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Cheque Batch Deposit","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"PDC Management","name":"Cheque Batch Deposit","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"cancel":1,"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","submit":1,"write":1},
+  {"create":1,"read":1,"role":"Finance Manager","submit":1,"write":1}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

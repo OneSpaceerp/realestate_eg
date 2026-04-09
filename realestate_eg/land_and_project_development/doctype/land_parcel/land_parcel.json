@@ -1,0 +1,243 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-04-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "naming_series",
+  "parcel_name",
+  "location",
+  "governorate",
+  "total_area_sqm",
+  "column_break_details",
+  "acquisition_type",
+  "acquisition_date",
+  "status",
+  "linked_project",
+  "nuca_allocation",
+  "financials_section",
+  "total_cost",
+  "transfer_tax_amount",
+  "legal_fees",
+  "column_break_financials",
+  "agency_commission",
+  "title_deed_number",
+  "gis_section",
+  "gis_coordinates",
+  "attachments_section",
+  "attachments"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Parcel Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "LP-.YYYY.-.####.",
+   "reqd": 1,
+   "default": "LP-.YYYY.-.####."
+  },
+  {
+   "fieldname": "parcel_name",
+   "fieldtype": "Data",
+   "label": "Parcel Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "governorate",
+   "fieldtype": "Data",
+   "label": "Governorate",
+   "reqd": 1,
+   "in_standard_filter": 1,
+   "description": "Egyptian governorate (e.g., Cairo, Giza, Alexandria)"
+  },
+  {
+   "fieldname": "total_area_sqm",
+   "fieldtype": "Float",
+   "label": "Total Area (sqm)",
+   "reqd": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acquisition_type",
+   "fieldtype": "Select",
+   "label": "Acquisition Type",
+   "reqd": 1,
+   "options": "\nNUCA Allocation\nPrivate Purchase\nGovernment Tender\nPartnership",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "acquisition_date",
+   "fieldtype": "Date",
+   "label": "Acquisition Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "reqd": 1,
+   "options": "\nUnder Negotiation\nAcquired\nUnder Development\nDeveloped\nTransferred",
+   "default": "Under Negotiation",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "linked_project",
+   "fieldtype": "Link",
+   "label": "Linked Project",
+   "options": "Real Estate Project"
+  },
+  {
+   "fieldname": "nuca_allocation",
+   "fieldtype": "Link",
+   "label": "NUCA Allocation",
+   "options": "NUCA Allocation",
+   "depends_on": "eval:doc.acquisition_type=='NUCA Allocation'"
+  },
+  {
+   "fieldname": "financials_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Details"
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Acquisition Cost",
+   "reqd": 1,
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "transfer_tax_amount",
+   "fieldtype": "Currency",
+   "label": "Transfer Tax (2.5%)",
+   "read_only": 1,
+   "options": "Company:company:default_currency",
+   "description": "Auto-calculated: 2.5% of acquisition cost"
+  },
+  {
+   "fieldname": "legal_fees",
+   "fieldtype": "Currency",
+   "label": "Legal Fees",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "column_break_financials",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "agency_commission",
+   "fieldtype": "Currency",
+   "label": "Agency Commission",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "title_deed_number",
+   "fieldtype": "Data",
+   "label": "Title Deed Number"
+  },
+  {
+   "fieldname": "gis_section",
+   "fieldtype": "Section Break",
+   "label": "GIS Information",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "gis_coordinates",
+   "fieldtype": "Small Text",
+   "label": "GIS Coordinates",
+   "description": "Latitude/Longitude or polygon coordinates"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Attachments",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Attach",
+   "label": "Title Deeds / Maps / Contracts"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "group": "Projects",
+   "link_doctype": "Real Estate Project",
+   "link_fieldname": "land_parcel"
+  },
+  {
+   "group": "NUCA",
+   "link_doctype": "NUCA Allocation",
+   "link_fieldname": "land_parcel"
+  }
+ ],
+ "modified": "2026-04-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Land and Project Development",
+ "name": "Land Parcel",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Developer Admin",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Finance Manager",
+   "select": 1
+  }
+ ],
+ "search_fields": "parcel_name,location,governorate",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_views": 1
+}

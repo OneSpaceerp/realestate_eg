@@ -1,0 +1,37 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","property_contract","property_unit","buyer_profile","company","column_break","status","cancellation_date","reason","is_developer_delay","financials_section","total_amount_paid","project_completion_pct","deduction_pct","deduction_amount","column_break_fin","net_refund_amount","refund_method","broker_clawback_required","refund_schedule","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"UC-.YYYY.-.####.","reqd":1,"default":"UC-.YYYY.-.####."},
+  {"fieldname":"property_contract","fieldtype":"Link","label":"Property Contract","options":"Property Contract","reqd":1,"in_standard_filter":1},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","reqd":1,"in_list_view":1},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","reqd":1,"in_list_view":1},
+  {"fieldname":"company","fieldtype":"Link","label":"Company","options":"Company","reqd":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nSubmitted\nUnder Review\nApproved\nRefund in Progress\nCompleted\nRejected","default":"Submitted","in_list_view":1,"in_standard_filter":1,"allow_on_submit":1},
+  {"fieldname":"cancellation_date","fieldtype":"Date","label":"Cancellation Date","reqd":1,"default":"Today"},
+  {"fieldname":"reason","fieldtype":"Small Text","label":"Reason for Cancellation","reqd":1},
+  {"fieldname":"is_developer_delay","fieldtype":"Check","label":"Developer Delay (100% Refund)"},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Financial Calculation"},
+  {"fieldname":"total_amount_paid","fieldtype":"Currency","label":"Total Amount Paid","reqd":1,"options":"Company:company:default_currency"},
+  {"fieldname":"project_completion_pct","fieldtype":"Percent","label":"Project Completion %","reqd":1},
+  {"fieldname":"deduction_pct","fieldtype":"Percent","label":"Deduction %","read_only":1},
+  {"fieldname":"deduction_amount","fieldtype":"Currency","label":"Deduction Amount","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"net_refund_amount","fieldtype":"Currency","label":"Net Refund Amount","read_only":1,"options":"Company:company:default_currency","in_list_view":1},
+  {"fieldname":"refund_method","fieldtype":"Select","label":"Refund Method","options":"\nEqual Monthly\nLump Sum\nConditional on Resale","default":"Equal Monthly"},
+  {"fieldname":"broker_clawback_required","fieldtype":"Check","label":"Broker Clawback Required"},
+  {"fieldname":"refund_schedule","fieldtype":"Link","label":"Refund Schedule","options":"Refund Schedule","read_only":1,"allow_on_submit":1},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Unit Cancellation","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Cancellation and Refund","name":"Unit Cancellation","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"cancel":1,"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","submit":1,"write":1},
+  {"create":1,"read":1,"role":"Sales Manager","submit":1,"write":1},
+  {"read":1,"role":"Finance Manager"},
+  {"read":1,"role":"Legal Counsel"}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

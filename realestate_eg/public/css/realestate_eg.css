@@ -1,0 +1,109 @@
+/* Real Estate Egypt — Custom Styles */
+/* Version 1.0 */
+
+/* ===== Dashboard Indicators ===== */
+.indicator-pill.green { background-color: #4CAF50; }
+.indicator-pill.red { background-color: #F44336; }
+.indicator-pill.orange { background-color: #FF9800; }
+.indicator-pill.blue { background-color: #2196F3; }
+.indicator-pill.purple { background-color: #9C27B0; }
+
+/* ===== PDC Status Cards ===== */
+.pdc-status-card {
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 4px 0;
+    transition: all 0.2s ease;
+}
+
+.pdc-status-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdc-status-received { border-left: 4px solid #2196F3; }
+.pdc-status-vault { border-left: 4px solid #9C27B0; }
+.pdc-status-submitted { border-left: 4px solid #FF9800; }
+.pdc-status-collection { border-left: 4px solid #FFC107; }
+.pdc-status-cleared { border-left: 4px solid #4CAF50; }
+.pdc-status-bounced { border-left: 4px solid #F44336; }
+
+/* ===== Installment Schedule Grid ===== */
+.frappe-control[data-fieldname="schedule"] .rows .row {
+    transition: background-color 0.15s ease;
+}
+
+.frappe-control[data-fieldname="schedule"] .rows .row:hover {
+    background-color: rgba(33, 150, 243, 0.05);
+}
+
+/* Overdue row highlighting */
+.installment-overdue {
+    background-color: rgba(244, 67, 54, 0.08) !important;
+}
+
+.installment-paid {
+    background-color: rgba(76, 175, 80, 0.08) !important;
+}
+
+/* ===== Buyer Portal ===== */
+.buyer-portal-hero {
+    background: linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #01579b 100%);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.buyer-portal-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s ease;
+}
+
+.buyer-portal-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Progress Bars ===== */
+.re-progress-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.re-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    background: linear-gradient(90deg, #4CAF50, #2196F3);
+}
+
+.re-progress-fill.warning {
+    background: linear-gradient(90deg, #FF9800, #F44336);
+}
+
+/* ===== Risk Score Badges ===== */
+.risk-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.risk-low { background: #E8F5E9; color: #2E7D32; }
+.risk-medium { background: #FFF3E0; color: #E65100; }
+.risk-high { background: #FFEBEE; color: #C62828; }
+
+/* ===== Dark Mode Support ===== */
+@media (prefers-color-scheme: dark) {
+    .buyer-portal-card {
+        background: var(--card-bg, #1e1e1e);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+}

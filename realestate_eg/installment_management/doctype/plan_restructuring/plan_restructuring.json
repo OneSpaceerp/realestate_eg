@@ -1,0 +1,32 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","installment_plan","buyer_profile","restructure_date","column_break","status","restructure_type","reason","financials_section","original_outstanding","restructure_fee_pct","restructure_fee_amount","new_financed_amount","column_break_fin","new_duration_months","new_frequency","new_installment_amount","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"RES-.YYYY.-.####.","reqd":1,"default":"RES-.YYYY.-.####."},
+  {"fieldname":"installment_plan","fieldtype":"Link","label":"Original Installment Plan","options":"Installment Plan","reqd":1,"in_list_view":1},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","fetch_from":"installment_plan.buyer_profile","read_only":1},
+  {"fieldname":"restructure_date","fieldtype":"Date","label":"Restructure Date","reqd":1,"default":"Today"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nDraft\nApproved\nRejected","default":"Draft","in_list_view":1,"allow_on_submit":1},
+  {"fieldname":"restructure_type","fieldtype":"Select","label":"Type","options":"\nExtend Duration\nChange Frequency\nBalloon Addition\nCapitalize Penalties","reqd":1},
+  {"fieldname":"reason","fieldtype":"Small Text","label":"Reason","reqd":1},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"New Financial Terms"},
+  {"fieldname":"original_outstanding","fieldtype":"Currency","label":"Original Outstanding","fetch_from":"installment_plan.total_outstanding","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"restructure_fee_pct","fieldtype":"Percent","label":"Restructure Fee %"},
+  {"fieldname":"restructure_fee_amount","fieldtype":"Currency","label":"Restructure Fee (Flat)","options":"Company:company:default_currency"},
+  {"fieldname":"new_financed_amount","fieldtype":"Currency","label":"New Financed Amount","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"column_break_fin","fieldtype":"Column Break"},
+  {"fieldname":"new_duration_months","fieldtype":"Int","label":"New Duration (Months)","reqd":1},
+  {"fieldname":"new_frequency","fieldtype":"Select","label":"New Frequency","options":"\nMonthly\nQuarterly\nSemi-Annual\nAnnual","reqd":1},
+  {"fieldname":"new_installment_amount","fieldtype":"Currency","label":"Est. New Installment","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Plan Restructuring","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Installment Management","name":"Plan Restructuring","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"cancel":1,"create":1,"delete":1,"read":1,"report":1,"role":"System Manager","submit":1,"write":1},
+  {"create":1,"read":1,"role":"Finance Manager","submit":1,"write":1}
+ ],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

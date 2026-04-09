@@ -1,0 +1,63 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":[
+  "cheque_section","naming_series","cheque_number","drawer_name","drawee_bank","branch",
+  "column_break_cheque","due_date","amount","currency","status","physical_location",
+  "buyer_section","buyer_profile","installment_plan","installment_schedule_row",
+  "column_break_buyer","payee","company",
+  "clearing_section","collecting_bank","clearing_date","return_reason","bounce_count",
+  "column_break_clearing","replacement_pdc",
+  "ocr_section","cheque_image","ocr_verified","ocr_discrepancy_notes",
+  "vault_section","vault_location","vault_shelf","vault_slot"
+ ],
+ "fields":[
+  {"fieldname":"cheque_section","fieldtype":"Section Break","label":"Cheque Details"},
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"PDC-.YYYY.-.####.","reqd":1,"default":"PDC-.YYYY.-.####."},
+  {"fieldname":"cheque_number","fieldtype":"Data","label":"Cheque Number","reqd":1,"in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"drawer_name","fieldtype":"Data","label":"Drawer Name","reqd":1,"in_list_view":1},
+  {"fieldname":"drawee_bank","fieldtype":"Data","label":"Drawee Bank","reqd":1,"in_standard_filter":1},
+  {"fieldname":"branch","fieldtype":"Data","label":"Branch"},
+  {"fieldname":"column_break_cheque","fieldtype":"Column Break"},
+  {"fieldname":"due_date","fieldtype":"Date","label":"Due Date","reqd":1,"in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"amount","fieldtype":"Currency","label":"Amount","reqd":1,"in_list_view":1,"options":"Company:company:default_currency"},
+  {"fieldname":"currency","fieldtype":"Link","label":"Currency","options":"Currency","default":"EGP"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","reqd":1,"options":"\nReceived\nIn Vault\nSubmitted to Bank\nUnder Collection\nCleared\nBounced\nReturned to Buyer\nCancelled\nReplaced","default":"Received","in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"physical_location","fieldtype":"Data","label":"Physical Location"},
+  {"fieldname":"buyer_section","fieldtype":"Section Break","label":"Reference"},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","reqd":1,"in_standard_filter":1},
+  {"fieldname":"installment_plan","fieldtype":"Link","label":"Installment Plan","options":"Installment Plan"},
+  {"fieldname":"installment_schedule_row","fieldtype":"Int","label":"Schedule Row #"},
+  {"fieldname":"column_break_buyer","fieldtype":"Column Break"},
+  {"fieldname":"payee","fieldtype":"Data","label":"Payee"},
+  {"fieldname":"company","fieldtype":"Link","label":"Company","options":"Company","reqd":1},
+  {"fieldname":"clearing_section","fieldtype":"Section Break","label":"Clearing","collapsible":1},
+  {"fieldname":"collecting_bank","fieldtype":"Data","label":"Collecting Bank"},
+  {"fieldname":"clearing_date","fieldtype":"Date","label":"Clearing Date","read_only":1},
+  {"fieldname":"return_reason","fieldtype":"Select","label":"Return Reason","options":"\nInsufficient Funds\nAccount Closed\nStop Payment\nSignature Mismatch\nStale Date\nOther","depends_on":"eval:doc.status=='Bounced'"},
+  {"fieldname":"bounce_count","fieldtype":"Int","label":"Bounce Count","read_only":1,"default":"0"},
+  {"fieldname":"column_break_clearing","fieldtype":"Column Break"},
+  {"fieldname":"replacement_pdc","fieldtype":"Link","label":"Replacement PDC","options":"Post Dated Cheque","depends_on":"eval:doc.status=='Bounced'"},
+  {"fieldname":"ocr_section","fieldtype":"Section Break","label":"OCR Verification","collapsible":1},
+  {"fieldname":"cheque_image","fieldtype":"Attach Image","label":"Cheque Image"},
+  {"fieldname":"ocr_verified","fieldtype":"Check","label":"OCR Verified","read_only":1},
+  {"fieldname":"ocr_discrepancy_notes","fieldtype":"Small Text","label":"OCR Discrepancy Notes","read_only":1},
+  {"fieldname":"vault_section","fieldtype":"Section Break","label":"Vault Location","collapsible":1},
+  {"fieldname":"vault_location","fieldtype":"Data","label":"Vault/Safe"},
+  {"fieldname":"vault_shelf","fieldtype":"Data","label":"Shelf"},
+  {"fieldname":"vault_slot","fieldtype":"Data","label":"Slot"}
+ ],
+ "links":[
+  {"group":"Schedule","link_doctype":"Installment Plan","link_fieldname":"installment_plan"},
+  {"group":"Batch","link_doctype":"Cheque Batch Deposit","link_fieldname":"post_dated_cheque"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"PDC Management","name":"Post Dated Cheque","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[
+  {"create":1,"delete":1,"email":1,"export":1,"print":1,"read":1,"report":1,"role":"System Manager","select":1,"share":1,"write":1},
+  {"create":1,"read":1,"report":1,"role":"Finance Manager","select":1,"write":1},
+  {"read":1,"role":"Sales Manager","select":1}
+ ],
+ "search_fields":"cheque_number,drawer_name,drawee_bank,status",
+ "sort_field":"due_date","sort_order":"ASC","track_changes":1
+}

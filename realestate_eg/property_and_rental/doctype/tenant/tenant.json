@@ -1,0 +1,27 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","tenant_name","customer","tenant_type","national_id","column_break","phone","email","address","nationality","kyc_section","kyc_verified","kyc_document","financials_section","bank_name","bank_account"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"TEN-.YYYY.-.####.","reqd":1,"default":"TEN-.YYYY.-.####."},
+  {"fieldname":"tenant_name","fieldtype":"Data","label":"Tenant Name","reqd":1,"in_list_view":1},
+  {"fieldname":"customer","fieldtype":"Link","label":"Customer","options":"Customer","reqd":1},
+  {"fieldname":"tenant_type","fieldtype":"Select","label":"Tenant Type","options":"\nIndividual\nCorporate","default":"Individual"},
+  {"fieldname":"national_id","fieldtype":"Data","label":"National ID / CRN","reqd":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"phone","fieldtype":"Data","label":"Phone","options":"Phone","in_list_view":1},
+  {"fieldname":"email","fieldtype":"Data","label":"Email","options":"Email"},
+  {"fieldname":"address","fieldtype":"Small Text","label":"Address"},
+  {"fieldname":"nationality","fieldtype":"Data","label":"Nationality","default":"Egyptian"},
+  {"fieldname":"kyc_section","fieldtype":"Section Break","label":"KYC Validation"},
+  {"fieldname":"kyc_verified","fieldtype":"Check","label":"KYC Verified"},
+  {"fieldname":"kyc_document","fieldtype":"Attach","label":"KYC Document"},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Financial Profile"},
+  {"fieldname":"bank_name","fieldtype":"Data","label":"Bank Name"},
+  {"fieldname":"bank_account","fieldtype":"Data","label":"Bank Account"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Property and Rental","name":"Tenant","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Sales Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC"
+}

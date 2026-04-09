@@ -1,0 +1,25 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB","is_submittable":1,
+ "field_order":["naming_series","property_unit","buyer_profile","delivery_date","column_break","status","property_contract","handover_notes","financials_section","all_installments_paid","maintenance_deposit_paid","snags_section","snag_list","amended_from"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"DEL-.YYYY.-.####.","reqd":1,"default":"DEL-.YYYY.-.####."},
+  {"fieldname":"property_unit","fieldtype":"Link","label":"Property Unit","options":"Property Unit","reqd":1,"in_list_view":1},
+  {"fieldname":"buyer_profile","fieldtype":"Link","label":"Buyer Profile","options":"Buyer Profile","reqd":1,"in_list_view":1},
+  {"fieldname":"delivery_date","fieldtype":"Date","label":"Delivery Date","reqd":1,"default":"Today"},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nScheduled\nSnagging\nDelivered\nDelayed","default":"Scheduled","in_list_view":1,"allow_on_submit":1},
+  {"fieldname":"property_contract","fieldtype":"Link","label":"Property Contract","options":"Property Contract"},
+  {"fieldname":"handover_notes","fieldtype":"Small Text","label":"Handover Notes"},
+  {"fieldname":"financials_section","fieldtype":"Section Break","label":"Clearance Checklist"},
+  {"fieldname":"all_installments_paid","fieldtype":"Check","label":"All Installments Paid"},
+  {"fieldname":"maintenance_deposit_paid","fieldtype":"Check","label":"Maintenance / Wadeea Deposit Paid"},
+  {"fieldname":"snags_section","fieldtype":"Section Break","label":"Snag List"},
+  {"fieldname":"snag_list","fieldtype":"Text Editor","label":"Snagging Items (To be fixed)"},
+  {"fieldname":"amended_from","fieldtype":"Link","label":"Amended From","no_copy":1,"options":"Property Delivery","print_hide":1,"read_only":1}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Project Structure","name":"Property Delivery","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"cancel":1,"create":1,"read":1,"role":"System Manager","submit":1,"write":1},{"create":1,"read":1,"role":"Sales Manager","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}

@@ -1,0 +1,27 @@
+{
+ "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
+ "doctype":"DocType","engine":"InnoDB",
+ "field_order":["naming_series","project_name","land_parcel","allocation_date","column_break","status","total_area_feddan","location","payment_section","total_price","down_payment","installment_amount","column_break_pay","remaining_balance","next_due_date","nuca_ref"],
+ "fields":[
+  {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"NUCA-.YYYY.-.####.","reqd":1,"default":"NUCA-.YYYY.-.####."},
+  {"fieldname":"project_name","fieldtype":"Data","label":"Project Name","reqd":1,"in_list_view":1},
+  {"fieldname":"land_parcel","fieldtype":"Link","label":"Land Parcel","options":"Land Parcel"},
+  {"fieldname":"allocation_date","fieldtype":"Date","label":"Allocation Date","reqd":1},
+  {"fieldname":"column_break","fieldtype":"Column Break"},
+  {"fieldname":"status","fieldtype":"Select","label":"Status","options":"\nAllocated\nUnder Payment\nFully Paid\nDefaulted","default":"Allocated","in_list_view":1,"in_standard_filter":1},
+  {"fieldname":"total_area_feddan","fieldtype":"Float","label":"Total Area (Feddan)","precision":"4"},
+  {"fieldname":"location","fieldtype":"Data","label":"Location"},
+  {"fieldname":"payment_section","fieldtype":"Section Break","label":"Payment Details"},
+  {"fieldname":"total_price","fieldtype":"Currency","label":"Total Price","options":"Company:company:default_currency"},
+  {"fieldname":"down_payment","fieldtype":"Currency","label":"Down Payment","options":"Company:company:default_currency"},
+  {"fieldname":"installment_amount","fieldtype":"Currency","label":"NUCA Installment Amount","options":"Company:company:default_currency"},
+  {"fieldname":"column_break_pay","fieldtype":"Column Break"},
+  {"fieldname":"remaining_balance","fieldtype":"Currency","label":"Remaining Balance","read_only":1,"options":"Company:company:default_currency"},
+  {"fieldname":"next_due_date","fieldtype":"Date","label":"Next Due Date"},
+  {"fieldname":"nuca_ref","fieldtype":"Data","label":"NUCA Reference Number"}
+ ],
+ "modified":"2026-04-09 00:00:00.000000","modified_by":"Administrator",
+ "module":"Land and Project Development","name":"NUCA Allocation","naming_rule":"By \"Naming Series\" field","owner":"Administrator",
+ "permissions":[{"create":1,"delete":1,"read":1,"role":"System Manager","write":1},{"create":1,"read":1,"role":"Developer Admin","write":1}],
+ "sort_field":"modified","sort_order":"DESC","track_changes":1
+}
