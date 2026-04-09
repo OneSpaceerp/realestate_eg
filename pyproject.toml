@@ -10,8 +10,10 @@ requires-python = ">=3.12"
 readme = "README.md"
 
 dependencies = [
-    "frappe",
-    "erpnext",
+    "cryptography>=41.0.0",
+    "requests>=2.31.0",
+    "python-dateutil>=2.8.2",
+    "xmltodict>=0.13.0"
 ]
 
 [build-system]
