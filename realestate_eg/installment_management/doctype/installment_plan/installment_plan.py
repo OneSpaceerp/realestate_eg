@@ -93,9 +93,11 @@ class InstallmentPlan(Document):
         total_paid = 0.0
         total_penalties = 0.0
         overdue_amount = 0.0
+        total_scheduled = 0.0
         last_payment = None
 
         for row in self.schedule:
+            total_scheduled += flt(row.total_due)
             total_paid += flt(row.paid_amount)
             total_penalties += flt(row.penalty_amount)
             if row.status == "Overdue":
@@ -105,13 +107,13 @@ class InstallmentPlan(Document):
                     last_payment = row.payment_date
 
         self.total_paid = flt(total_paid, 2)
-        self.total_outstanding = flt(flt(self.financed_amount) - total_paid, 2)
+        self.total_outstanding = flt(total_scheduled - total_paid, 2)
         self.total_penalties_accrued = flt(total_penalties, 2)
         self.overdue_amount = flt(overdue_amount, 2)
         self.last_payment_date = last_payment
 
-        if flt(self.financed_amount) > 0:
-            self.completion_pct = flt(total_paid / flt(self.financed_amount) * 100, 2)
+        if total_scheduled > 0:
+            self.completion_pct = flt(total_paid / total_scheduled * 100, 2)
         else:
             self.completion_pct = 0
 
