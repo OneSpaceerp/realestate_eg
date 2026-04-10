@@ -65,7 +65,15 @@ frappe.ui.form.on("Installment Plan", {
                             frm.clear_table("schedule");
                             r.message.forEach(row => {
                                 let c = frm.add_child("schedule");
-                                Object.assign(c, row);
+                                c.due_date = row.due_date;
+                                c.amount = row.amount;
+                                c.penalty_amount = row.penalty_amount;
+                                c.total_due = row.total_due;
+                                c.paid_amount = row.paid_amount;
+                                c.balance = row.balance;
+                                c.status = row.status;
+                                c.days_overdue = row.days_overdue;
+                                c.idx = row.idx;
                             });
                             frm.refresh_field("schedule");
                         }
