@@ -14,3 +14,28 @@ class BuyerProfile(Document):
                 _("Egyptian National ID must be exactly 14 digits."),
                 indicator="orange",
             )
+
+    def update_financials(self):
+        """Called automatically whenever the buyer's Installment Plans are saved or paid."""
+        # Calculate active outstanding balance
+        plans = frappe.get_all(
+            "Installment Plan",
+            filters={"buyer_profile": self.name, "status": ("in", ["Active", "Defaulted"])},
+            fields=["total_outstanding", "property_unit"]
+        )
+        total_outstanding = sum(flt(p.total_outstanding) for p in plans)
+
+        # Count total distinct units owned (Active, Defaulted, or Fully Paid)
+        paid_plans = frappe.get_all(
+            "Installment Plan",
+            filters={"buyer_profile": self.name, "status": "Fully Paid"},
+            fields=["property_unit"]
+        )
+        
+        all_units = set()
+        for p in plans + paid_plans:
+            if p.property_unit:
+                all_units.add(p.property_unit)
+
+        self.db_set("total_outstanding", flt(total_outstanding, 2))
+        self.db_set("total_units_owned", len(all_units))

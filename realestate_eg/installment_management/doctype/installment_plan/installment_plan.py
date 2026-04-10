@@ -30,9 +30,20 @@ class InstallmentPlan(Document):
 
     def on_submit(self):
         self._update_unit_status()
+        self._sync_buyer_profile()
 
     def on_cancel(self):
         self._revert_unit_status()
+        self._sync_buyer_profile()
+
+    def on_update(self):
+        """Sync buyer profile whenever the plan is saved or payment is recorded."""
+        self._sync_buyer_profile()
+
+    def _sync_buyer_profile(self):
+        if self.buyer_profile:
+            buyer = frappe.get_doc("Buyer Profile", self.buyer_profile)
+            buyer.update_financials()
 
     def _calculate_financials(self):
         """Calculate down payment and financed amount."""
