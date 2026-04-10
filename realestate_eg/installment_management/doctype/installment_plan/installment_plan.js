@@ -51,6 +51,40 @@ frappe.ui.form.on("Installment Plan", {
                     }
                 );
             }, __("Admin"));
+        } else if (!frm.doc.docstatus) {
+            frm.add_custom_button(__("Generate Schedule"), function () {
+                if (!frm.doc.total_unit_price || !frm.doc.plan_start_date || !frm.doc.plan_duration_months) {
+                    frappe.msgprint(__("Please fill Total Unit Price, Start Date, and Duration first."));
+                    return;
+                }
+                frm.call({
+                    method: "get_preview_schedule",
+                    doc: frm.doc,
+                    callback: function(r) {
+                        if (r.message && r.message.length > 0) {
+                            frm.clear_table("schedule");
+                            r.message.forEach(row => {
+                                let c = frm.add_child("schedule");
+                                Object.assign(c, row);
+                            });
+                            frm.refresh_field("schedule");
+                        }
+                    }
+                });
+            }, __("Actions"));
+        }
+    },
+
+    validate: function(frm) {
+        // Clear empty default rows so server-side can auto-generate
+        if (frm.doc.schedule && frm.doc.schedule.length > 0) {
+            let has_content = false;
+            frm.doc.schedule.forEach(row => {
+                if (row.amount) has_content = true;
+            });
+            if (!has_content) {
+                frm.clear_table("schedule");
+            }
         }
     },
 

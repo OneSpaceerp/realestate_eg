@@ -152,3 +152,10 @@ class InstallmentPlan(Document):
             _("Schedule regenerated with {0} installments.").format(len(self.schedule)),
             indicator="green",
         )
+
+    @frappe.whitelist()
+    def get_preview_schedule(self):
+        """Generate and return schedule for preview without saving."""
+        self._calculate_financials()
+        self._generate_schedule()
+        return [row.as_dict() for row in self.schedule]
