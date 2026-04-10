@@ -15,6 +15,18 @@ frappe.ui.form.on("Installment Payment", {
                         frm.set_value("buyer_profile", r.message.buyer_profile);
                         frm.set_value("property_unit", r.message.property_unit);
                         frm.set_value("company", r.message.company);
+                        
+                        // Auto-fetch the next unpaid schedule row
+                        if (r.message.schedule && r.message.schedule.length > 0) {
+                            let next_row = r.message.schedule.find(row => 
+                                ["Upcoming", "Due", "Overdue", "Partially Paid"].includes(row.status) && row.balance > 0
+                            );
+                            
+                            if (next_row) {
+                                frm.set_value("schedule_row_idx", next_row.idx);
+                                frm.set_value("amount", next_row.balance);
+                            }
+                        }
                     }
                 },
             });
