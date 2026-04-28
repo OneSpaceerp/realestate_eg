@@ -20,3 +20,20 @@ class RealEstateProject(Document):
         )
         total_contribution = sum(flt(m.completion_contribution) for m in milestones)
         self.completion_pct = min(flt(total_contribution, 2), 100)
+
+@frappe.whitelist()
+def trigger_cost_allocation(project_name, cost_type, total_cost, method="By Market Value"):
+    from realestate_eg.utils.cost_allocation import apply_allocation_to_units
+    
+    frappe.has_permission("Real Estate Project", "write", throw=True)
+    
+    total_cost = flt(total_cost)
+    
+    allocations = apply_allocation_to_units(
+        project_name=project_name,
+        cost_type=cost_type,
+        total_cost=total_cost,
+        method=method
+    )
+    
+    return allocations
