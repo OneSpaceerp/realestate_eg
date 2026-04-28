@@ -43,7 +43,7 @@ frappe.ui.form.on("Real Estate Project", {
                             args: {
                                 project_name: frm.doc.name,
                                 cost_type: values.cost_type,
-                                total_cost: values.total_cost,
+                                total_cost: flt(values.total_cost),
                                 method: values.method
                             },
                             freeze: true,
