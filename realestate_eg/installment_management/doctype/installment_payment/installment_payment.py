@@ -110,15 +110,20 @@ class InstallmentPayment(Document):
         interest_account = company.default_income_account
         receivable_account = company.default_receivable_account
         
+        if inventory_account and frappe.db.get_value("Account", inventory_account, "account_type") == "Stock":
+            inventory_account = None # Cannot post JE directly to Stock accounts
+            
         if not cogs_account:
             cogs_account = frappe.db.get_value("Account", {"account_type": "Cost of Goods Sold", "company": self.company, "is_group": 0})
         if not inventory_account:
-            inventory_account = frappe.db.get_value("Account", {"account_type": "Stock", "company": self.company, "is_group": 0})
+            inventory_account = frappe.db.get_value("Account", {"account_type": ("!=", "Stock"), "root_type": "Asset", "company": self.company, "is_group": 0, "name": ("like", "%Inventory%")})
+        if not inventory_account:
+            inventory_account = frappe.db.get_value("Account", {"account_type": ("!=", "Stock"), "root_type": "Asset", "company": self.company, "is_group": 0, "name": ("like", "%WIP%")})
         if not interest_account:
             interest_account = frappe.db.get_value("Account", {"account_type": "Income", "company": self.company, "is_group": 0})
             
         if not (cogs_account and inventory_account and interest_account):
-            frappe.msgprint(_("Could not generate recognition journal. Please ensure Cost of Goods Sold, Stock, and Income accounts exist for this company."), indicator="orange")
+            frappe.msgprint(_("Could not generate recognition journal. Please ensure Cost of Goods Sold, Real Estate Inventory (Non-Stock Asset), and Income accounts exist for this company."), indicator="orange")
             return
             
         try:
