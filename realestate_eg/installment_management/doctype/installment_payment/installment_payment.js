@@ -4,6 +4,18 @@ frappe.ui.form.on("Installment Payment", {
         frm.set_query("installment_plan", function () {
             return { filters: { status: "Active", docstatus: 1 } };
         });
+        
+        if (frm.doc.docstatus === 1 && (frm.doc.payment_entry || frm.doc.recognition_journal)) {
+            frm.add_custom_button(__("View Ledger"), function() {
+                let vouchers = [];
+                if (frm.doc.payment_entry) vouchers.push(frm.doc.payment_entry);
+                if (frm.doc.recognition_journal) vouchers.push(frm.doc.recognition_journal);
+                
+                frappe.set_route("query-report", "General Ledger", {
+                    voucher_no: vouchers.join(",")
+                });
+            }, __("View"));
+        }
     },
     installment_plan: function (frm) {
         if (frm.doc.installment_plan) {

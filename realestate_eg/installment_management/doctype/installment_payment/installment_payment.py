@@ -13,11 +13,19 @@ class InstallmentPayment(Document):
 
     def on_submit(self):
         self._create_payment_entry()
+        self._create_recognition_journal()
         self._update_installment_schedule()
         self._trigger_eta_receipt()
 
     def on_cancel(self):
         self._reverse_installment_schedule()
+        if self.recognition_journal:
+            try:
+                je = frappe.get_doc("Journal Entry", self.recognition_journal)
+                if je.docstatus == 1:
+                    je.cancel()
+            except Exception:
+                pass
 
     def _validate_amount(self):
         if flt(self.amount) <= 0:
@@ -72,6 +80,92 @@ class InstallmentPayment(Document):
                 _("Warning: Could not create Payment Entry: {0}. Manual creation may be needed.").format(str(e)),
                 indicator="orange",
             )
+
+    def _create_recognition_journal(self):
+        """Create a Journal Entry to recognize proportional COGS and Interest."""
+        plan = frappe.get_doc("Installment Plan", self.installment_plan)
+        unit = frappe.get_doc("Property Unit", self.property_unit)
+        buyer = frappe.get_doc("Buyer Profile", self.buyer_profile)
+        customer = buyer.customer
+        
+        payment_amount = flt(self.amount)
+        admin_fee_pct = flt(plan.admin_fee_pct)
+        
+        principal_amount = flt(payment_amount / (1 + admin_fee_pct / 100), 2)
+        interest_amount = flt(payment_amount - principal_amount, 2)
+        
+        unit_price = flt(unit.total_unit_price)
+        unit_cost = flt(unit.unit_total_cost)
+        
+        cogs_amount = 0.0
+        if unit_price > 0:
+            cogs_amount = flt(principal_amount * (unit_cost / unit_price), 2)
+            
+        if interest_amount <= 0 and cogs_amount <= 0:
+            return
+            
+        company = frappe.get_doc("Company", self.company)
+        cogs_account = company.default_expense_account
+        inventory_account = company.default_inventory_account
+        interest_account = company.default_income_account
+        receivable_account = company.default_receivable_account
+        
+        if not cogs_account:
+            cogs_account = frappe.db.get_value("Account", {"account_type": "Cost of Goods Sold", "company": self.company, "is_group": 0})
+        if not inventory_account:
+            inventory_account = frappe.db.get_value("Account", {"account_type": "Stock", "company": self.company, "is_group": 0})
+        if not interest_account:
+            interest_account = frappe.db.get_value("Account", {"account_type": "Income", "company": self.company, "is_group": 0})
+            
+        if not (cogs_account and inventory_account and interest_account):
+            frappe.msgprint(_("Could not generate recognition journal. Please ensure Cost of Goods Sold, Stock, and Income accounts exist for this company."), indicator="orange")
+            return
+            
+        try:
+            je = frappe.new_doc("Journal Entry")
+            je.voucher_type = "Journal Entry"
+            je.company = self.company
+            je.posting_date = self.payment_date
+            je.user_remark = f"COGS and Interest Recognition for {self.name}"
+            
+            if interest_amount > 0:
+                je.append("accounts", {
+                    "account": receivable_account,
+                    "party_type": "Customer",
+                    "party": customer,
+                    "debit_in_account_currency": interest_amount,
+                    "reference_type": "Installment Payment",
+                    "reference_name": self.name
+                })
+                je.append("accounts", {
+                    "account": interest_account,
+                    "credit_in_account_currency": interest_amount,
+                    "reference_type": "Installment Payment",
+                    "reference_name": self.name
+                })
+                
+            if cogs_amount > 0:
+                je.append("accounts", {
+                    "account": cogs_account,
+                    "debit_in_account_currency": cogs_amount,
+                    "reference_type": "Installment Payment",
+                    "reference_name": self.name
+                })
+                je.append("accounts", {
+                    "account": inventory_account,
+                    "credit_in_account_currency": cogs_amount,
+                    "reference_type": "Installment Payment",
+                    "reference_name": self.name
+                })
+                
+            je.insert(ignore_permissions=True)
+            je.submit()
+            
+            self.db_set("recognition_journal", je.name, update_modified=False)
+            
+        except Exception as e:
+            frappe.log_error(title=f"Recognition Journal Creation Failed: {self.name}", message=str(e))
+            frappe.msgprint(_("Warning: Could not create Recognition Journal: {0}").format(str(e)), indicator="orange")
 
     def _update_installment_schedule(self):
         """Update the corresponding installment schedule row."""

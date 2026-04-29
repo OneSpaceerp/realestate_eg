@@ -1,7 +1,7 @@
 {
  "actions":[],"allow_import":1,"autoname":"naming_series:","creation":"2026-04-09 00:00:00.000000",
  "doctype":"DocType","engine":"InnoDB","is_submittable":1,
- "field_order":["payment_section","naming_series","installment_plan","buyer_profile","property_unit","company","column_break_payment","payment_date","amount","payment_method","payment_entry","pdc_reference","schedule_section","schedule_row_idx","remarks","amended_from"],
+ "field_order":["payment_section","naming_series","installment_plan","buyer_profile","property_unit","company","column_break_payment","payment_date","amount","payment_method","payment_entry","recognition_journal","pdc_reference","schedule_section","schedule_row_idx","remarks","amended_from"],
  "fields":[
   {"fieldname":"payment_section","fieldtype":"Section Break","label":"Payment Details"},
   {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"IP-.YYYY.-.####.","reqd":1,"default":"IP-.YYYY.-.####."},
@@ -14,6 +14,7 @@
   {"fieldname":"amount","fieldtype":"Currency","label":"Amount","reqd":1,"options":"Company:company:default_currency","in_list_view":1},
   {"fieldname":"payment_method","fieldtype":"Select","label":"Payment Method","reqd":1,"options":"\nCash\nBank Transfer\nCheque\nPDC\nOnline Payment\nPOS","in_standard_filter":1},
   {"fieldname":"payment_entry","fieldtype":"Link","label":"Payment Entry","options":"Payment Entry","read_only":1,"allow_on_submit":1},
+  {"fieldname":"recognition_journal","fieldtype":"Link","label":"Recognition Journal","options":"Journal Entry","read_only":1,"allow_on_submit":1},
   {"fieldname":"pdc_reference","fieldtype":"Link","label":"PDC Reference","options":"Post Dated Cheque","depends_on":"eval:doc.payment_method=='PDC'"},
   {"fieldname":"schedule_section","fieldtype":"Section Break","label":"Schedule Reference"},
   {"fieldname":"schedule_row_idx","fieldtype":"Int","label":"Schedule Row #","description":"Index of the installment schedule row being paid"},
