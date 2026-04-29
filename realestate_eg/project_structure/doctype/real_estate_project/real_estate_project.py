@@ -27,6 +27,10 @@ def trigger_cost_allocation(project_name, cost_type, total_cost, method="By Mark
     
     frappe.has_permission("Real Estate Project", "write", throw=True)
     
+    # Strip commas if passed as formatted string
+    if isinstance(total_cost, str):
+        total_cost = total_cost.replace(",", "")
+        
     total_cost = flt(total_cost)
     
     allocations = apply_allocation_to_units(
