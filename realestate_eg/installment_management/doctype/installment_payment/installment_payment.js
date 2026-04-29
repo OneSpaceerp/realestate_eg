@@ -5,16 +5,21 @@ frappe.ui.form.on("Installment Payment", {
             return { filters: { status: "Active", docstatus: 1 } };
         });
         
-        if (frm.doc.docstatus === 1 && (frm.doc.payment_entry || frm.doc.recognition_journal)) {
-            frm.add_custom_button(__("View Ledger"), function() {
-                let vouchers = [];
-                if (frm.doc.payment_entry) vouchers.push(frm.doc.payment_entry);
-                if (frm.doc.recognition_journal) vouchers.push(frm.doc.recognition_journal);
-                
-                frappe.set_route("query-report", "General Ledger", {
-                    voucher_no: vouchers.join(",")
-                });
-            }, __("View"));
+        if (frm.doc.docstatus === 1) {
+            if (frm.doc.payment_entry) {
+                frm.add_custom_button(__("Payment Ledger"), function() {
+                    frappe.set_route("query-report", "General Ledger", {
+                        voucher_no: frm.doc.payment_entry
+                    });
+                }, __("View"));
+            }
+            if (frm.doc.recognition_journal) {
+                frm.add_custom_button(__("Recognition Ledger"), function() {
+                    frappe.set_route("query-report", "General Ledger", {
+                        voucher_no: frm.doc.recognition_journal
+                    });
+                }, __("View"));
+            }
         }
     },
     installment_plan: function (frm) {
