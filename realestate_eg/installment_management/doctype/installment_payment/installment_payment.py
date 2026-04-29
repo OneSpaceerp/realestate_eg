@@ -94,7 +94,7 @@ class InstallmentPayment(Document):
         principal_amount = flt(payment_amount / (1 + admin_fee_pct / 100), 2)
         interest_amount = flt(payment_amount - principal_amount, 2)
         
-        unit_price = flt(unit.total_unit_price)
+        unit_price = flt(unit.total_price)
         unit_cost = flt(unit.unit_total_cost)
         
         cogs_amount = 0.0
