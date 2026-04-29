@@ -138,29 +138,21 @@ class InstallmentPayment(Document):
                     "account": receivable_account,
                     "party_type": "Customer",
                     "party": customer,
-                    "debit_in_account_currency": interest_amount,
-                    "reference_type": "Installment Payment",
-                    "reference_name": self.name
+                    "debit_in_account_currency": interest_amount
                 })
                 je.append("accounts", {
                     "account": interest_account,
-                    "credit_in_account_currency": interest_amount,
-                    "reference_type": "Installment Payment",
-                    "reference_name": self.name
+                    "credit_in_account_currency": interest_amount
                 })
                 
             if cogs_amount > 0:
                 je.append("accounts", {
                     "account": cogs_account,
-                    "debit_in_account_currency": cogs_amount,
-                    "reference_type": "Installment Payment",
-                    "reference_name": self.name
+                    "debit_in_account_currency": cogs_amount
                 })
                 je.append("accounts", {
                     "account": inventory_account,
-                    "credit_in_account_currency": cogs_amount,
-                    "reference_type": "Installment Payment",
-                    "reference_name": self.name
+                    "credit_in_account_currency": cogs_amount
                 })
                 
             je.insert(ignore_permissions=True)
